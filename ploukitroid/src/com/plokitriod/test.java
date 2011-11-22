@@ -17,11 +17,6 @@ public class test extends View implements View.OnTouchListener {
 	private int oldX, oldY;
 	public boolean isTouched;
 
-	// private Button touch, gyro;
-	// private boolean touchOrGyro; // touch = true and gyro = false
-
-	// private final SensorManager mSensorManager;
-	// private final Sensor mGyro;
 
 	public test(Context context) {
 		super(context);
@@ -40,10 +35,6 @@ public class test extends View implements View.OnTouchListener {
 		// touch = new Button(context);
 		// gyro = new Button(context);
 		//
-		// // Sensor options
-		// mSensorManager =
-		// (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-		// //mGyro = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	}
 
 	public Rect getRectangle() {
@@ -68,7 +59,7 @@ public class test extends View implements View.OnTouchListener {
 			rectAttributs.setColor(Color.RED);
 		} else
 			rectAttributs.setColor(Color.BLUE);
-		
+
 		canvas.drawRect(rectangle, rectAttributs);
 		rectAttributs.setColor(Color.RED);
 		canvas.drawRect(ennemy, rectAttributs);
@@ -101,23 +92,5 @@ public class test extends View implements View.OnTouchListener {
 		return true;
 	}
 
-	// @Override
-	// public void onAccuracyChanged(Sensor sensor, int accuracy) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-	//
-	// @Override
-	// public void onSensorChanged(SensorEvent event) {
-	// // TODO Auto-generated method stub
-	// float axisX = event.values[0];
-	//
-	// if (axisX > 0) {
-	// rectangle.set(rectangle.left - 50, rectangle.top,
-	// rectangle.right - 50, rectangle.bottom);
-	// invalidate();
-	// }
-	//
-	// }
 
 }
