@@ -16,10 +16,10 @@ public class PloukitroidActivity extends Activity implements
 		View.OnTouchListener, OnCreateContextMenuListener {
 	/** Called when the activity is first created. */
 	PloukitroidView pView;
-	Button bStart;
-	Button bStop;
+	Button bStart, bStop;
 	Ship ship;
 	boolean bMenu;
+	MainThread main;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,11 +41,13 @@ public class PloukitroidActivity extends Activity implements
 		switch (v.getId()) {
 		// Start application :
 		case R.id.bStart:
-			ship = new Ship(pView, this);
-			pView = new PloukitroidView(getApplicationContext(), ship);
+			ship = new Ship(pView, this, CONSTANT.SHIP_PLAYER);
+			//pView = new PloukitroidView(getApplicationContext(), ship);
+			//this.setContentView(pView);
+			//pView.setOnTouchListener(ship);
 
-			this.setContentView(pView);
-			pView.setOnTouchListener(ship);
+			//main = new MainThread(ship, pView, this);
+			//main.run();
 			break;
 
 		// Press stop button
@@ -60,7 +62,6 @@ public class PloukitroidActivity extends Activity implements
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package com.ploukitroid;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.shapes.RectShape;
 import android.view.Display;
@@ -16,14 +18,20 @@ public class Ship extends RectShape implements View.OnTouchListener {
 	private boolean isTouching;
 	private View pView;
 
-	public Ship(View pView, Context context) {
-		path = R.drawable.ic_launcher;
+	public Ship(View pView, Context context, int type) {
+		if (type == CONSTANT.SHIP_PLAYER)
+			path = R.drawable.ic_launcher;
+		else if (type == CONSTANT.SHIP_ENEMY)
+			path = R.drawable.enemy;
 		posX = 100;
 		posY = 100;
 		oldX = posX;
 		oldY = posY;
-		width = 100;
-		heigth = 100;
+
+		Bitmap bShip = BitmapFactory.decodeResource(context.getResources(),
+				path);
+		width = bShip.getWidth();
+		heigth = bShip.getHeight();
 		rectangle = new Rect(posX - width / 2, posY - heigth / 2, posX + width
 				/ 2, posY + heigth / 2);
 		isTouching = false;
@@ -43,6 +51,11 @@ public class Ship extends RectShape implements View.OnTouchListener {
 		return rectangle;
 	}
 
+	public void setPosition(int x, int y) {
+		rectangle.set(x - width / 2, y - heigth / 2, x + width / 2, y
+				+ heigth / 2);
+	}
+	
 	public void setPosition(int x, int y, MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
 			if (x >= rectangle.left && x <= rectangle.right)
@@ -59,10 +72,12 @@ public class Ship extends RectShape implements View.OnTouchListener {
 		if (isTouching) {
 			if (x < width / 2)
 				x = width / 2;
-			else if (x / screenWidth > 0.25)
+			else if (x > screenWidth / 4)
 				x = screenWidth / 4;
-			if (y < width / 2)
-				y = width / 2;
+			if (y < heigth / 2)
+				y = heigth / 2;
+			else if (y > screenHeigth - heigth / 2)
+				y = screenHeigth - heigth / 2;
 			rectangle.set(x - width / 2, y - heigth / 2, x + width / 2, y
 					+ heigth / 2);
 		}
@@ -77,7 +92,7 @@ public class Ship extends RectShape implements View.OnTouchListener {
 
 		this.setPosition(x, y, event);
 		v.invalidate();
-		return false;
+		return true;
 	}
 
 }

@@ -20,8 +20,7 @@ public class PloukitroidView extends View{
 		super(context);
 		// TODO Auto-generated constructor stub
 		this.ship = ship;
-		this.setBackgroundResource(R.drawable.pigin);
-
+		this.setBackgroundResource(R.drawable.bg);
 	}
 
 	@Override
