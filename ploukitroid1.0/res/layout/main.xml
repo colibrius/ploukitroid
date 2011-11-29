@@ -3,22 +3,21 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
+        android:id="@+id/bStart"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="Start" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton1"
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/bStop"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="Stop" />
 
 </LinearLayout>
