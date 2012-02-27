@@ -14,6 +14,7 @@ public class Captor implements SensorEventListener
 	private SensorManager mSensorManager;
 	private Ship ship;
 	private PloukitroidView pView;
+	private Double basicInclination;
 
 	public Captor(Ship ship, SensorManager mSensorManager, PloukitroidView pView)
 	{
@@ -30,23 +31,27 @@ public class Captor implements SensorEventListener
 
 	public void onSensorChanged(SensorEvent event)
 	{
-		y = event.values[0];
-		x = event.values[1];
+		x = event.values[0];
+		y = event.values[1];
+		if (basicInclination == null)
+		{
+			basicInclination = (double)y;
+		}
 
-		if (y > CONSTANT.SENSOR_SENSIBILITY_LIMIT)
-		{
-			if (ship.getRect().bottom > pView.getHeight())
-				ship.setPosition(ship.getX(), pView.getHeight() - ship.getShipHeigth() / 2);
-			else
-				ship.setPosition(ship.getX(), (int)(ship.getY() + 2*y*y));
-		}
-		else if (y < -CONSTANT.SENSOR_SENSIBILITY_LIMIT)
-		{
-			if (ship.getRect().top < 0)
-				ship.setPosition(ship.getX(), 0 + ship.getShipHeigth() / 2);
-			else
-				ship.setPosition(ship.getX(), (int)(ship.getY() - 2*y*y));
-		}
+//		if (y > basicInclination+CONSTANT.SENSOR_SENSIBILITY_LIMIT)
+//		{
+//			if (ship.getRect().bottom > pView.getHeight())
+//				ship.setPosition(ship.getX(), pView.getHeight() - ship.getShipHeigth() / 2);
+//			else
+//				ship.setPosition(ship.getX(), (int)(ship.getY() + 2*(y-basicInclination)*(y-basicInclination)));
+//		}
+//		else if (y < basicInclination-CONSTANT.SENSOR_SENSIBILITY_LIMIT)
+//		{
+//			if (ship.getRect().top < 0)
+//				ship.setPosition(ship.getX(), 0 + ship.getShipHeigth() / 2);
+//			else
+//				ship.setPosition(ship.getX(), (int)(ship.getY() - 2*(y-basicInclination)*(y-basicInclination)));
+//		}
 
 	}
 

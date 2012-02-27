@@ -9,6 +9,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.DebugUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +39,9 @@ public class PloukitroidActivity extends Activity implements View.OnTouchListene
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+		/**Profiler start*/
+		//Debug.startMethodTracing("/data/trace/elf.trace");
+		
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.main);
 
@@ -108,6 +113,9 @@ public class PloukitroidActivity extends Activity implements View.OnTouchListene
 	{
 		mSensorManager.unregisterListener(c);
 		super.onStop();
+
+		/**Profiler stop*/
+		//Debug.stopMethodTracing();
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
-//vue
+// View
 public class PloukitroidView extends View {
 	Drawable bg;
 	Canvas canvas;
